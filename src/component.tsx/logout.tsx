@@ -1,12 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function Logout() {
 
     let navigate = useNavigate()
     let logout = () => {
-        navigate("/login")
+        Cookies.remove('token')
+        window.location.href = "http://localhost:3000/login";
     }
     return (
         <>

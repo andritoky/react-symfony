@@ -1,8 +1,11 @@
 .App {
-  width: 900PX;
+  position: relative;
+  width: 900px;
   margin: 0 auto;
   margin-top: 20px;
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -24,6 +27,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.float-right {
+  float: right;
 }
 
 .App-link {
@@ -58,6 +65,10 @@
   text-align: right;
 }
 
+.action button {
+  margin-left: 5px;
+}
+
 .box-view {
   display: flex;
   flex-direction: row;
@@ -82,6 +93,29 @@
   width: 100%;
 }
 
+.article-image {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.article-image img {
+  width: 100%;
+
+}
+
+.add-article {
+  float: right;
+}
+
+.retour-article {
+  float: right;
+  margin-left: 20px;
+}
+
 
 @keyframes App-logo-spin {
   from {
@@ -91,4 +125,233 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Liste */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
+
+.none {
+  display: none;
+}
+
+.grand-titre {
+  font-family: 'Righteous', 'Pacifico', cursive;
+  font-size: 40px;
+}
+
+.bl-liste {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.box-liste {
+  width: 47%;
+  height: 300px;
+  /* background-color: aqua; */
+}
+
+.article-01 {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #282c34;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px -5px 30px #ccc;
+
+}
+
+.article-01 img {
+  width: 100%;
+}
+
+.bl-01-02 {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.article-02,
+.article-03 {
+  position: relative;
+  width: 47%;
+  height: 300px;
+  background-color: #282c34;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 5px 30px #ccc;
+}
+
+.article-02 img {
+  text-align: center;
+  height: 100%;
+  margin-left: -130px;
+}
+
+.article-03 img {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+.content {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  color: white;
+}
+
+.ct-art-1 {
+  width: 50%;
+}
+
+.ct-art-1 p {
+  font-family: 'Righteous', 'Pacifico', cursive;
+  font-size: 20px;
+}
+
+.btn-article-01 {
+  margin-top: 22px !important;
+}
+
+.ct-art-2 {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  color: white;
+  padding: 20px 20px 20px;
+  background: linear-gradient(70deg, rgba(2, 2, 2, 0.753), rgba(0, 0, 0, 0.115), rgba(255, 255, 255, 0.007));
+  transition: 1s;
+}
+
+.ct-art-2:hover {
+  background: linear-gradient(70deg, rgba(2, 2, 2, 0.753), rgba(0, 0, 0, 0.515), rgba(255, 255, 255, 0.207));
+}
+
+.ct-art-2 p {
+  font-family: 'Righteous', 'Pacifico', cursive;
+  font-size: 17px;
+}
+
+.search-item {
+  width: 96%;
+  margin-bottom: 20px;
+}
+
+.liste-item {
+  margin-bottom: 20px;
+}
+
+.item-title {
+  display: block;
+  position: relative;
+  width: 80%;
+  font-family: 'Righteous', 'Pacifico', cursive;
+}
+
+.item-date {
+  font-family: sans-serif;
+  font-size: 12px;
+  float: right;
+}
+
+
+/* VIEW */
+
+.loader-view {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  z-index: 2;
+  text-align: center;
+}
+
+.loader-text-view {
+  position: absolute;
+  width: 100%;
+  top: 250px;
+  text-align: center;
+}
+
+.view-article h4 {
+  font-family: 'Righteous', 'Pacifico', cursive;
+}
+
+.article-dashbord {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: sans-serif;
+}
+
+.dashbord-profile {
+  width: 60%;
+  margin-top: 30px;
+}
+
+.dashbord-comment {
+  width: 35%;
+}
+
+.nb-article {
+  float: right;
+  margin-top: 10px;
+  font-family: 'Dosis', sans-serif;
+  font-weight: bolder;
+}
+
+.loader {
+  position: relative;
+  width: 100%;
+  height: 185px;
+  font-family: 'Dosis', sans-serif;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.loader-img {
+  width: 100%;
+}
+
+.loader-text {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-bottom: -100px;
+}
+
+.view-title {
+  font-family: 'Righteous', 'Pacifico', cursive;
+  font-size: 27px;
+  margin-bottom: 15px;
+}
+
+.entete-comment {
+  margin-top: 20px;
+  font-family: 'Righteous', 'Pacifico', cursive;
+  font-size: 20px;
+}
+
+.item-comment {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+
+/* ADD ARTICLE */
+
+.new-entete {
+  font-family: 'Righteous', 'Pacifico', cursive;
 }

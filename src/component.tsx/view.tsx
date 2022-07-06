@@ -5,7 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 interface DataClient {
     id: number,
     name: string,
-    age: number
+    age: number,
+    adresse: string
 }
 
 function View() {
@@ -16,7 +17,7 @@ function View() {
         getData();
     }, []);
     let getData = async () => {
-        let reponse = await fetch(`http://localhost:8000/client/view/` + id)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/api/client/view/` + id)
         let data = await reponse.json()
         console.log(data);
         setData(data)
@@ -36,6 +37,7 @@ function View() {
                     <div>Id : {data?.id}</div>
                     <div>Name : {data?.name}</div>
                     <div>Age : {data?.age}</div>
+                    <div>Address : {data?.adresse}</div>
                 </div>
             </div>
             <br />

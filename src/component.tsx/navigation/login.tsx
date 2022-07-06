@@ -2,6 +2,8 @@ import React from 'react'
 import "./login.css"
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
+import Cookies from 'js-cookie'
+import { myHeaders } from '../../http/headers';
 
 interface DataResponse {
     status: number,
@@ -22,6 +24,7 @@ function Login() {
 
 
     useEffect(() => {
+        verifyToken()
         isCookie()
     }, [])
 
@@ -32,11 +35,8 @@ function Login() {
     let register = function () {
 
     }
-    let login = async () => {
-        let login_data = {
-            email: email.current?.value,
-            password: password.current?.value,
-        }
+
+    let verifyToken = async () => {
         let myHeaders = new Headers({
             'Accept': 'application/json',
             "Content-Type": "application/json"
@@ -44,15 +44,37 @@ function Login() {
         let requestOption = {
             method: "POST",
             headers: myHeaders,
+            body: JSON.stringify({ token: Cookies.get('token') })
+        }
+        let reponse = await fetch(`http://localhost:8000/api/verify-token`, requestOption)
+        let data = await reponse.json()
+        console.log(data);
+
+        data.token_verify === true ? navigate('/home') : navigate('/login')
+    }
+
+    let ifAuthTrue = (token: string) => {
+        Cookies.set('token', token)
+        navigate("/home")
+    }
+    let login = async () => {
+        let login_data = {
+            email: email.current?.value,
+            password: password.current?.value,
+        }
+
+        let requestOption = {
+            method: "POST",
+            headers: myHeaders,
             body: JSON.stringify(login_data)
         }
-        let reponse = await fetch('http://localhost:8000/login', requestOption)
+        let reponse = await fetch('http://localhost:8000/api/login', requestOption)
         let reponse_status = await reponse.json()
         console.log(reponse_status);
+        // console.log("header :", reponse.headers);
         setResponse(reponse_status)
         setMessage(reponse_status.message)
-        reponse_status.authentification === true ? navigate("/home") : console.log("auth:false");
-
+        reponse_status.authentification === true ? ifAuthTrue(reponse_status.token) : console.log("auth:false");
 
     }
 
