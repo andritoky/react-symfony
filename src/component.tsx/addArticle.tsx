@@ -71,7 +71,7 @@ function AddArticle() {
     }
 
     let getCategory = async () => {
-        let reponse = await fetch(`http://localhost:8000/api/category/get`, requestOptionGet)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/api/category/get`, requestOptionGet)
         let rep = await reponse.json()
         setMyCategory(rep)
 
@@ -130,7 +130,7 @@ function AddArticle() {
             body: JSON.stringify(data)
         }
 
-        let reponse = await fetch(`http://localhost:8000/api/article/add`, requestOption)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/api/article/add`, requestOption)
         let rep = await reponse.json()
         setReponse(rep)
         console.log(rep);

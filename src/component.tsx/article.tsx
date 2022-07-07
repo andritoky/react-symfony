@@ -34,7 +34,7 @@ function Article() {
     }, []);
 
     let getData = async () => {
-        let reponse = await fetch(`http://localhost:8000/api/article/get`, requestOptionGet)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/api/article/get`, requestOptionGet)
         let data = await reponse.json()
         setLoading(false)
         setData(data)

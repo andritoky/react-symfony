@@ -49,7 +49,7 @@ function ArticleView() {
     }, []);
 
     let getData = async () => {
-        let reponse = await fetch(`http://localhost:8000/monapi/articles/` + id, requestOptionGet)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/monapi/articles/` + id, requestOptionGet)
         let data = await reponse.json()
         setLoading(false)
         setData(data)
@@ -63,7 +63,7 @@ function ArticleView() {
 
     let supArticle = async (id: any) => {
         console.log(id);
-        let reponse = await fetch(`http://localhost:8000/api/article/delete/` + id, requestOptionGet)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/api/article/delete/` + id, requestOptionGet)
         let data = await reponse.json()
         console.log(data);
         navigate("/article")
@@ -82,8 +82,8 @@ function ArticleView() {
             }
 
             <div className='view-article'>
-                <button className='btn btn-danger retour-article ' onClick={() => { supArticle(data?.id) }}>Supprimer cette article</button>
                 <button className='btn btn-dark retour-article' onClick={() => { listeArticle() }}>Retour Liste Article</button>
+                <button className='btn btn-danger retour-article ' onClick={() => { supArticle(data?.id) }}>Supprimer cette article</button>
 
                 <h4 > {data?.category.title}- ID : {data?.id}</h4>
                 <p className="card-text">Date de creation : {data?.createdAt}</p>
@@ -97,6 +97,7 @@ function ArticleView() {
                     <p className="card-text"> {data?.description}</p>
                     <div className='article-image'>
                         <img src={"http://localhost:8000/uploads/images/" + data?.image} alt="" />
+                        <img src={"/images/life/error2.webp"} alt="" />
                     </div>
                     <br />
                     <div>

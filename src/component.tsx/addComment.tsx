@@ -22,7 +22,7 @@ function AddComment({ ajoutCommentaire }: any) {
             headers: myHeaders,
             body: JSON.stringify({ 'comment': comment.current?.value })
         }
-        let reponse = await fetch(`http://localhost:8000/api/comment/add/` + id, requestOption)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/api/comment/add/` + id, requestOption)
         let data = await reponse.json()
         console.log(data);
         // navigate("/article/view/" + id + "")
@@ -32,7 +32,7 @@ function AddComment({ ajoutCommentaire }: any) {
 
 
     let getDataArticle = async () => {
-        let reponse = await fetch(`http://localhost:8000/monapi/articles/` + id, requestOptionGet)
+        let reponse = await fetch(`https://mon-test-symfo.herokuapp.com/monapi/articles/` + id, requestOptionGet)
         let data = await reponse.json()
         ajoutCommentaire(data)
     }
