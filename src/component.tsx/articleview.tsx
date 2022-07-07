@@ -96,7 +96,7 @@ function ArticleView() {
                     <h5 className="view-title">{data?.title} </h5>
                     <p className="card-text"> {data?.description}</p>
                     <div className='article-image'>
-                        <img src={"http://localhost:8000/uploads/images/" + data?.image} alt="" />
+                        <img src={"https://mon-test-symfo.herokuapp.com/uploads/images/" + data?.image} alt="" />
                         <img src={"/images/life/error2.webp"} alt="" />
                     </div>
                     <br />
