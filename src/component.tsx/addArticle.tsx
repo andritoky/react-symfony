@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import { log } from 'console';
 import { myHeaders, requestOptionGet } from '../http/headers';
+import { validate } from '../Service/validation';
 
 interface DataReponse {
     status?: number,
@@ -28,10 +29,46 @@ function AddArticle() {
     let [file, setFile] = useState<any>()
     let [extension, setExtension] = useState<any>()
     let dataCategory = useMemo(() => myCategory, [myCategory]);
+    let [infoJuste, setInfoJuste] = useState(false)
+
+
+    //Valiidation
+
+    const initialValues = {
+        category: "",
+        title: "",
+        image: "",
+        description: "",
+        content: ""
+    };
+
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState<any>({});
+    const [isSubmit, setIsSubmit] = useState(false);
 
     useEffect(() => {
         getCategory()
-    }, []);
+        console.log(formErrors);
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(formValues);
+        }
+    }, [formErrors]);
+
+    const handleChange = (e: any) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+
+    let handleSubmitForm = (e: any) => {
+        e.preventDefault();
+        let errors = validate(formValues)
+        let erroLength = Object.keys(errors).length
+
+        setFormErrors(errors);
+        setIsSubmit(true);
+
+        erroLength === 0 ? addNewArticle() : console.log("Not Send !")
+    }
 
     let getCategory = async () => {
         let reponse = await fetch(`http://localhost:8000/api/category/get`, requestOptionGet)
@@ -97,19 +134,28 @@ function AddArticle() {
         let rep = await reponse.json()
         setReponse(rep)
         console.log(rep);
+        rep.id ? navigate("/") : console.log(rep);
+
     }
+
+    let infoJusteChange = () => {
+        setInfoJuste(!infoJuste)
+    }
+
+
 
 
     return (
         <div className="App">
             <h3 className='new-entete'>Creer nouvelle article </h3><br />
-            <form>
+            <form onSubmit={handleSubmitForm}>
                 <div className='mb-3'>
                     <label className="form-label">Chose Category</label>
                     <select
                         ref={category}
                         className="form-select"
-                        aria-label="Default select example">
+                        aria-label="Default select example"
+                    >
                         <option defaultValue={"default"} disabled>Exemple : Category 01</option>
                         {
                             dataCategory?.map((category: any, index: any) => {
@@ -120,26 +166,39 @@ function AddArticle() {
                 </div>
                 <div className='mb-3'>
                     <label className="form-label">Title</label>
-                    <input type="text" ref={title} className="form-control" />
+                    <input type="text" name="title" ref={title} value={formValues.title} onChange={handleChange} className="form-control" />
+                    <p className='error'>{formErrors.title}</p>
                 </div>
                 <div className='mb-3'>
                     <label className="form-label">description</label>
-                    <input type="text" ref={description} className="form-control" />
+                    <input type="text" ref={description} name="description" value={formValues.description} onChange={handleChange} className="form-control" />
+                    <p className='error'>{formErrors.description}</p>
                 </div>
                 <div className='mb-3'>
                     <label className="form-label">Image</label>
-                    <input type="file" ref={image} onChange={onImageChange} className="form-control" required />
+                    <input type="file" ref={image} onChange={onImageChange} className="form-control" />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Content</label>
-                    <textarea ref={content} className="form-control" id="exampleFormControlTextarea1" ></textarea>
+                    <textarea ref={content} name="content" value={formValues.content} onChange={handleChange} className="form-control"  ></textarea>
+                    <p className='error'>{formErrors.content}</p>
+                </div>
+
+                <div className="form-check">
+                    <input onChange={infoJusteChange} checked={infoJuste === true} className="form-check-input" type="checkbox" />
+                    <label className="form-check-label" >
+                        J’accepte que les informations saisies soient exploitées dans le cadre d’une relation commerciale.
+                    </label>
+                </div>
+                <br />
+                <div>
+                    <button type="submit" disabled={infoJuste === false} className="btn btn-primary" >Creer article</button>
+                    <button className="btn btn-dark float-right" onClick={retourHome} >Retour Liste Article</button>
                 </div>
 
             </form>
-            <div>
-                <button type="submit" className="btn btn-primary" onClick={addNewArticle}>Submit</button>
-                <button type="submit" className="btn btn-dark float-right" onClick={retourHome} >Liste Article</button>
-            </div>
+
+
 
             <div style={{ marginTop: "50px" }}>
                 {reponse?.detail ? <div className='alert alert-danger'> {reponse?.detail}</div> : null}

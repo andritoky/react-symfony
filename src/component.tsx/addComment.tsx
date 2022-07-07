@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { myHeaders } from '../http/headers';
+import { myHeaders, requestOptionGet } from '../http/headers';
 
-function AddComment() {
+function AddComment({ ajoutCommentaire }: any) {
     // let [mydata, setData] = useState<DataArticle>()
     // let data = useMemo(() => mydata, [mydata]);
-    // let navigate = useNavigate()
+    let navigate = useNavigate()
     let comment = useRef<HTMLTextAreaElement | null>(null)
     let { id } = useParams()
 
@@ -25,7 +25,16 @@ function AddComment() {
         let reponse = await fetch(`http://localhost:8000/api/comment/add/` + id, requestOption)
         let data = await reponse.json()
         console.log(data);
+        // navigate("/article/view/" + id + "")
+        // window.location.replace("http://localhost:3000/article/view/" + id);
+        getDataArticle()
+    }
 
+
+    let getDataArticle = async () => {
+        let reponse = await fetch(`http://localhost:8000/monapi/articles/` + id, requestOptionGet)
+        let data = await reponse.json()
+        ajoutCommentaire(data)
     }
 
     return (

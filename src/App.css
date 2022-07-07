@@ -355,3 +355,12 @@
 .new-entete {
   font-family: 'Righteous', 'Pacifico', cursive;
 }
+
+.error {
+  text-align: right;
+  color: red;
+  margin-top: 5px;
+  height: 5px;
+  font-family: 'Dosis', sans-serif;
+  font-weight: bolder;
+}

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { requestOptionGet } from '../http/headers';
 import TimeAgo from 'timeago-react';
 
+// import { config } from "dotenv"
+
 interface DataArticle {
     id: number,
     title: string,
@@ -19,8 +21,9 @@ interface DataArticle {
 
 function Article() {
     let [loading, setLoading] = useState<boolean>(true)
-    let [mydata, setData] = useState<DataArticle[]>()
+    let [mydata, setData] = useState<DataArticle[]>([])
     let data = useMemo(() => mydata, [mydata]);
+    let fist = mydata[0];
     let navigate = useNavigate()
     let search = useRef<HTMLInputElement | null>(null)
     let [searchData, setSearchData] = useState<DataArticle[]>()
@@ -50,7 +53,7 @@ function Article() {
     let searchdata = async () => {
         let searchQuery = search.current?.value;
         console.log("search :", searchQuery)
-        var mysearch = "" + searchQuery + "";
+        var mysearch = "" + searchQuery?.toLowerCase() + "";
         var condition = new RegExp(mysearch);
 
         var tab: any = searchData;
@@ -78,7 +81,7 @@ function Article() {
                     <div className='article-01'>
                         <img src="/images/life/image12.gif" />
                         <div className='content ct-art-1'>
-                            <span> 2022-01-09</span>
+                            <span>2022-07-07T09:10:22+00:00</span>
                             <p> Quel est le genre de l'article ?</p>
                             <button className="btn btn-outline-light btn-article-01">Detail</button>
                         </div>

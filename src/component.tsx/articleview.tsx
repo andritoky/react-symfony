@@ -40,6 +40,10 @@ function ArticleView() {
     let navigate = useNavigate()
     let { id } = useParams()
 
+    let ajoutCommentaire = (data: DataArticle) => {
+        setData(data)
+    }
+
     useEffect(() => {
         getData();
     }, []);
@@ -54,6 +58,14 @@ function ArticleView() {
     }
 
     let listeArticle = async () => {
+        navigate("/")
+    }
+
+    let supArticle = async (id: any) => {
+        console.log(id);
+        let reponse = await fetch(`http://localhost:8000/api/article/delete/` + id, requestOptionGet)
+        let data = await reponse.json()
+        console.log(data);
         navigate("/article")
     }
 
@@ -70,8 +82,9 @@ function ArticleView() {
             }
 
             <div className='view-article'>
-                <button className='btn btn-dark retour-article' onClick={() => { listeArticle() }}>Liste Article</button>
-                <button className='btn btn-primary retour-article ' onClick={() => { listeArticle() }}>Modifier Article</button>
+                <button className='btn btn-danger retour-article ' onClick={() => { supArticle(data?.id) }}>Supprimer cette article</button>
+                <button className='btn btn-dark retour-article' onClick={() => { listeArticle() }}>Retour Liste Article</button>
+
                 <h4 > {data?.category.title}- ID : {data?.id}</h4>
                 <p className="card-text">Date de creation : {data?.createdAt}</p>
 
@@ -95,7 +108,7 @@ function ArticleView() {
 
                 <div className='dashbord-comment'>
 
-                    <AddComment />
+                    <AddComment ajoutCommentaire={ajoutCommentaire} />
 
                     <p className='entete-comment'>{data?.comments.length} Commentaires</p>
 

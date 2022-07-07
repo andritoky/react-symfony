@@ -18,7 +18,7 @@ function App() {
     <div className="App" data-testid="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Article />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Liste />} />
           <Route path="/add" element={<Add />} />
