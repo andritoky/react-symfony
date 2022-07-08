@@ -391,6 +391,14 @@
     display: none;
   }
 
+  .nb-article {
+    float: none;
+    position: absolute;
+    font-weight: bolder;
+    font-size: 17px;
+    color: #2098fa;
+  }
+
 
 }
 
@@ -407,6 +415,8 @@
   .article-image {
     height: 200px;
   }
+
+
 }
 
 @media screen and (max-width: 600px) {
