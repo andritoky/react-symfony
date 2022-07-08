@@ -109,6 +109,7 @@
 
 .add-article {
   float: right;
+  margin-top: 5px;
 }
 
 .retour-article {
@@ -288,20 +289,19 @@
 }
 
 .article-dashbord {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-family: sans-serif;
+  display: block;
 }
 
 .dashbord-profile {
-  width: 60%;
+  width: 100%;
   margin-top: 30px;
 }
 
 .dashbord-comment {
-  width: 35%;
+  width: 100%;
 }
+
+
 
 .nb-article {
   float: right;
@@ -363,4 +363,71 @@
   height: 5px;
   font-family: 'Dosis', sans-serif;
   font-weight: bolder;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .App {
+    width: 90%;
+  }
+
+  .ct-art-1 {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .bl-liste {
+    display: block;
+  }
+
+  .box-liste {
+    width: 100%;
+    height: auto;
+  }
+
+  .article-02,
+  .article-03 {
+    display: none;
+  }
+
+
+}
+
+@media screen and (max-width: 400px) {
+  .ct-art-1 {
+    width: 90%;
+  }
+}
+
+
+/* VIEW */
+
+@media screen and (max-width: 700px) {
+  .article-image {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .retour-article {
+    float: none !important;
+    margin-left: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .article-image {
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .article-image {
+    height: 150px;
+  }
 }

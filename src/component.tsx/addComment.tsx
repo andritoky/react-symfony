@@ -38,7 +38,7 @@ function AddComment({ ajoutCommentaire }: any) {
     }
 
     return (
-        <div className="tab-data">
+        <div className="">
             <div className="mb-3">
                 <label className="form-label">Ajouter Commentaire</label>
                 <textarea ref={comment} className="form-control" id="exampleFormControlTextarea1" ></textarea>

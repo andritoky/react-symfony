@@ -67,8 +67,24 @@ function Article() {
         console.log("result", result);
     }
 
+    let handleKeyPress = (event: any) => {
+        console.log(event.key);
+        if (event.key === 'Enter') {
+            searchdata();
+        }
+    }
+
+    let voirTech = () => {
+        navigate("/article/view/4")
+    }
+
+    let voirDance = () => {
+        navigate("/article/view/3")
+    }
+
     return (
-        <div className="tab-data">
+
+        <div className="tab-data" >
 
             <div className='card-body'>
                 <button className='btn btn-primary add-article' onClick={() => { addArticle() }}>Add Article</button>
@@ -82,8 +98,8 @@ function Article() {
                         <img src="/images/life/image12.gif" />
                         <div className='content ct-art-1'>
                             <span>2022-07-07T09:10:22+00:00</span>
-                            <p> Quel est le genre de l'article ?</p>
-                            <button className="btn btn-outline-light btn-article-01">Detail</button>
+                            <p> Technologie, numérique, robotique </p>
+                            <button onClick={voirTech} className="btn btn-outline-light btn-article-01">Detail</button>
                         </div>
                     </div>
                     <div className='bl-01-02'>
@@ -91,16 +107,16 @@ function Article() {
                             <img src="/images/life/image14.webp" />
                             <div className='ct-art-2'>
                                 <span> 2022-01-09</span>
-                                <p> Ressources naturelles à Madagascar</p>
-                                <button className="btn btn-outline-light ">Detail</button>
+                                <p> La danse, le meilleur des sports</p>
+                                <button onClick={voirDance} className="btn btn-outline-light ">Detail</button>
                             </div>
                         </div>
                         <div className='article-02'>
                             <img src="/images/life/image6.png" />
                             <div className='ct-art-2'>
                                 <span> 2022-01-09</span>
-                                <p> Dubai Infos Pratiques</p>
-                                <button className="btn btn-outline-light ">Detail</button>
+                                <p> Les tendances mode Homme</p>
+
                             </div>
                         </div>
 
@@ -110,7 +126,7 @@ function Article() {
                 <div className='box-liste'>
                     <div className='search-item'>
                         <div className="input-group ">
-                            <input ref={search} type="search" className="form-control rounded" placeholder=" Search By Title" aria-label="Search" aria-describedby="search-addon" />
+                            <input ref={search} id="article-search" type="search" onKeyPress={(e) => handleKeyPress(e)} className="form-control rounded" placeholder=" Search By Title" aria-label="Search" aria-describedby="search-addon" />
                             <button type="button" className="btn btn-outline-primary" onClick={() => { searchdata() }} >search</button>
                             <button type="button" className="btn btn-dark" onClick={() => { addArticle() }}>add+</button>
                         </div>
