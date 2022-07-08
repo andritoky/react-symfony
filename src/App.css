@@ -400,6 +400,22 @@
   }
 
 
+  .loader {
+    text-align: center;
+  }
+
+  .loader-img {
+    width: 40%;
+  }
+
+  .loader-text {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+  }
+
+
 }
 
 @media screen and (max-width: 400px) {

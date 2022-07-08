@@ -97,7 +97,7 @@ function ArticleView() {
                     <p className="card-text"> {data?.description}</p>
                     <div className='article-image'>
                         <img src={"https://mon-test-symfo.herokuapp.com/uploads/images/" + data?.image} alt="" />
-                        <img src={"/images/life/error2.webp"} alt="" />
+                        <img src={"/images/loading/loading2.png"} alt="" />
                     </div>
                     <br />
                     <div>
